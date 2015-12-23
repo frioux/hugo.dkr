@@ -1,0 +1,25 @@
+#!/bin/sh
+
+set -e
+
+V=0.14
+
+echo http://dl-4.alpinelinux.org/alpine/v3.3/main > /etc/apk/repositories
+apk --update upgrade
+apk add py-pygments py-setuptools curl
+
+cd /tmp
+curl -Ls https://github.com/spf13/hugo/releases/download/v$V/hugo_${V}_linux_amd64.tar.gz > hugo.tar.gz
+tar xzf hugo.tar.gz
+mv hugo_${V}_linux_amd64/hugo_${V}_linux_amd64 /usr/local/bin/hugo
+cd /
+rm /tmp/hugo_${V}_linux_amd64 -rf
+
+apk del curl
+
+rm -rf /usr/lib/python2.7/distutils  \
+       /usr/lib/python2.7/idlelib    \
+       /usr/lib/python2.7/lib-tk     \
+       /usr/lib/python2.7/ensurepip  \
+       /usr/lib/python2.7/pydoc_data \
+       /var/cache/apk/*
