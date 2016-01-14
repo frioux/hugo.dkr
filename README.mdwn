@@ -1,0 +1,51 @@
+# Hugo Container
+
+## Usage
+
+```
+docker run -it --rm        \
+  --publish 1313:1313      \
+  --volume $(pwd):/tmp/pwd \
+  --user $(id -u)          \
+  frew/hugo                \
+  server
+```
+
+## Description
+
+[Hugo](http://gohugo.io/) is a static site generator written in Go.  It is
+incredibly fast and efficient.  Normally a container for a typical Go program
+would be overkill, as the binaries are statically linked.  In Hugo's case,
+though, Python is used to syntax highlight code, along with a few libraries to
+support that feature.  This container includes everything to support the syntax
+highlighting.
+
+## Ports
+
+Port `1313` is exposed for the debug server.
+
+## Volumes
+
+The one exposed / required volume is `/tmp/pwd`, which represents the directory
+you want to be Hugo's pwd.
+
+## Shortcut Usage
+
+I recommend putting the following script in your path to make usage of this
+container easier, presumably named `hugo`:
+
+```
+#!/bin/dash
+
+exec docker run -it --rm   \
+  --publish 1313:1313      \
+  --volume $(pwd):/tmp/pwd \
+  --user $(id -u)          \
+  frew/hugo                \
+  "$@"
+```
+
+Note that because the above publishes to a static port you cannot, for instance,
+run `hugo help` while `hugo server` is already running.  I warmly welcome
+patches to only add the `--publish 1313:1313` if `server` is the subcommand
+being used.
