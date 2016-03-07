@@ -2,7 +2,7 @@
 
 set -e
 
-V=0.14
+V=0.15
 
 echo http://dl-4.alpinelinux.org/alpine/v3.3/main > /etc/apk/repositories
 apk --update upgrade
