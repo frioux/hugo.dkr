@@ -2,17 +2,17 @@
 
 set -e
 
-V=0.15
+V=0.20.6
 
 apk --update upgrade
 apk add py2-pygments py-setuptools curl
 
 cd /tmp
-curl -Ls https://github.com/spf13/hugo/releases/download/v$V/hugo_${V}_linux_amd64.tar.gz > hugo.tar.gz
+curl -Ls https://github.com/spf13/hugo/releases/download/v$V/hugo_${V}_Linux-64bit.tar.gz > hugo.tar.gz
 tar xzf hugo.tar.gz
-mv hugo_${V}_linux_amd64/hugo_${V}_linux_amd64 /usr/local/bin/hugo
+mv hugo /usr/local/bin/hugo
 cd /
-rm /tmp/hugo_${V}_linux_amd64 -rf
+rm /tmp/hugo* -rf
 
 apk del curl
 
