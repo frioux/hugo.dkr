@@ -5,7 +5,7 @@ set -e
 V=0.20.6
 
 apk --update upgrade
-apk add py2-pygments py-setuptools curl
+apk add py-pygments curl
 
 cd /tmp
 curl -Ls https://github.com/spf13/hugo/releases/download/v$V/hugo_${V}_Linux-64bit.tar.gz > hugo.tar.gz
@@ -16,9 +16,9 @@ rm /tmp/hugo* -rf
 
 apk del curl
 
-rm -rf /usr/lib/python2.7/distutils  \
-       /usr/lib/python2.7/idlelib    \
-       /usr/lib/python2.7/lib-tk     \
-       /usr/lib/python2.7/ensurepip  \
-       /usr/lib/python2.7/pydoc_data \
+rm -rf /usr/lib/python3.5/distutils  \
+       /usr/lib/python3.5/idlelib    \
+       /usr/lib/python3.5/lib-tk     \
+       /usr/lib/python3.5/ensurepip  \
+       /usr/lib/python3.5/pydoc_data \
        /var/cache/apk/*
