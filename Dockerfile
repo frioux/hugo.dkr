@@ -1,5 +1,5 @@
 FROM alpine:3.5
-MAINTAINER Arthur Axel fREW Schmidt <frioux@gmail.com>
+MAINTAINER Arthur Axel fREW Schmidt <hugo@afoolishmanifesto.com>
 
 ENTRYPOINT ["/usr/local/bin/hugo"]
 
